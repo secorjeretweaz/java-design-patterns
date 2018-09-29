@@ -11,6 +11,7 @@ tags:
 ---
 
 ## Intent
+
 Compose objects into tree structures to represent part-whole
 hierarchies. Composite lets clients treat individual objects and compositions
 of objects uniformly.
@@ -130,6 +131,7 @@ elfMessage.print(); // Much wind pours from your mouth.
 ```
 
 ## Applicability
+
 Use the Composite pattern when
 
 * you want to represent part-whole hierarchies of objects
