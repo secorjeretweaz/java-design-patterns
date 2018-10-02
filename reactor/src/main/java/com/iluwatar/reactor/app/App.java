@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.reactor.app;
 
 import java.io.IOException;
@@ -84,6 +85,7 @@ import com.iluwatar.reactor.framework.ThreadPoolDispatcher;
  * The example uses Java NIO framework to implement the Reactor.
  * 
  */
+
 public class App {
 
   private NioReactor reactor;
@@ -96,6 +98,7 @@ public class App {
    * 
    * @param dispatcher the dispatcher that will be used to dispatch events.
    */
+  
   public App(Dispatcher dispatcher) {
     this.dispatcher = dispatcher;
   }
@@ -103,6 +106,7 @@ public class App {
   /**
    * App entry.
    */
+  
   public static void main(String[] args) throws IOException {
     new App(new ThreadPoolDispatcher(2)).start();
   }
@@ -112,22 +116,26 @@ public class App {
    *
    * @throws IOException if any channel fails to bind.
    */
+  
   public void start() throws IOException {
     /*
      * The application can customize its event dispatching mechanism.
      */
+    
     reactor = new NioReactor(dispatcher);
 
     /*
      * This represents application specific business logic that dispatcher will call on appropriate
      * events. These events are read events in our example.
      */
+    
     LoggingHandler loggingHandler = new LoggingHandler();
 
     /*
      * Our application binds to multiple channels and uses same logging handler to handle incoming
      * log requests.
      */
+    
     reactor.registerChannel(tcpChannel(6666, loggingHandler))
         .registerChannel(tcpChannel(6667, loggingHandler))
         .registerChannel(udpChannel(6668, loggingHandler)).start();
@@ -139,6 +147,7 @@ public class App {
    * @throws InterruptedException if interrupted while stopping the reactor.
    * @throws IOException if any I/O error occurs
    */
+  
   public void stop() throws InterruptedException, IOException {
     reactor.stop();
     dispatcher.stop();
